@@ -1,5 +1,5 @@
 # jd-base
-如果您是第一次安装，请等待1-2分钟后执行：docker exec -it jd bash git_pull，食用方法↓：
+如果您是第一次安装，请等待1-2分钟后执行：docker exec -it jd bash git_pull，如你是旁路由，请把-p 5678:5678 \替换成--network host \食用方法↓：
  ```
  docker run -dit \
 	-v /安装目录/jd/config:/jd/config \
@@ -16,7 +16,6 @@
 ```
 -v /安装目录/jd/scripts:/jd/scripts \
 ```
-如你是旁路由，请把-p 5678:5678 \替换成--network host \
 
 node基础镜像
 ```
@@ -25,6 +24,10 @@ noobx/jd:gitee
 集成python与node镜像
 ```
 noobx/jd:py
+```
+shell一键安装docker与watchtower(by:老揭力)
+```shell
+wget -q https://raw.githubusercontent.com/dockere/jd-base/master/sample/jd-docker.sh -O jd-docker.sh && chmod +x jd-docker.sh && ./jd-docker.sh
 ```
 # 你要知道的命令↓
 1. 手动 git pull 更新脚本
@@ -68,7 +71,7 @@ docker exec -it jd pm2 monit`或`docker exec -it jd pm2 logs
 ```
 docker restart jd
 ```
-11. 如何自动更新容器
+11. 如何自动更新容器！
 ```
 docker run -d \
     --name watchtower \
@@ -77,4 +80,3 @@ docker run -d \
     containrrr/watchtower \
     --cleanup
 ```
-12

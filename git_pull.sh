@@ -21,8 +21,9 @@ ContentNewTask=${ShellDir}/new_task
 ContentDropTask=${ShellDir}/drop_task
 SendCount=${ShellDir}/send_count
 isTermux=${ANDROID_RUNTIME_ROOT}${ANDROID_ROOT}
-ScriptsURL=git@gitee.com:lxk0301/jd_scripts
+ScriptsURL=git@gitee.com:lxk0301/jd_scripts.git
 ShellURL=https://gitee.com/dockere/jd-base
+DockerURL=https://gitee.com/lxk0301/jd_docker
 
 ## 更新crontab，gitee服务器同一时间限制5个链接，因此每个人更新代码必须错开时间，每次执行git_pull随机生成。
 ## 每天只更新两次,(分.时.延迟)为随机cron
@@ -33,7 +34,12 @@ function Update_Cron {
     RanMin=$((${RANDOM} % 60))
     RanSleep=$((${RANDOM} % 56))
     H="${RanHour},${ranH}"
+    #git_pull随机cron
     perl -i -pe "s|.+(bash git_pull.+)|${RanMin} ${H} \* \* \* sleep ${RanSleep} && \1|" ${ListCron}
+    #美丽研究院分随机cron
+    perl -i -pe "s|1 7,12(.+jd_beauty\W*.*)|${ranH} 7,12\1|" ${ListCron}
+    #修复joy_run错误cron
+    perl -i -pe "s|18 11,14(.+jd_joy_run\W*.*)|${RanHour} 9-20/2\1|" ${ListCron}
     crontab ${ListCron}
   fi
 }
@@ -54,13 +60,13 @@ function Git_CloneScripts {
 
 ## 更新scripts
 function Git_PullScripts {
+   echo -e "更新lxk0301脚本，原地址：${DockerURL}\n"
   cd ${ScriptsDir}
   git fetch --all
   ExitStatusScripts=$?
   git reset --hard origin/master
   echo
 }
-
 ## 用户数量UserSum
 function Count_UserSum {
   i=1
@@ -73,6 +79,7 @@ function Count_UserSum {
 }
 
 ## 把config.sh中提供的所有账户的PIN附加在jd_joy_run.js中，让各账户相互进行宠汪汪赛跑助力
+## 2021年03月05日脚本已支持账号内部助力
 function Change_JoyRunPins {
   j=${UserSum}
   PinALL=""
@@ -85,7 +92,7 @@ function Change_JoyRunPins {
     PinALL="${PinTempFormat},${PinALL}"
     let j--
   done
-  perl -i -pe "{s|(let invite_pins = \[\")(.+\"\];?)|\1${PinALL}\2|; s|(let run_pins = \[\")(.+\"\];?)|\1${PinALL}\2|}" ${ScriptsDir}/jd_joy_run.js
+#  perl -i -pe "{s|(let invite_pins = \[\')(.+\'\];?)|\1${PinALL}\2|; s|(let run_pins = \[\')(.+\'\];?)|\1${PinALL}\2|}" ${ScriptsDir}/jd_joy_run.js
 }
 
 ## 修改lxk0301大佬js文件的函数汇总
@@ -94,7 +101,6 @@ function Change_ALL {
     . ${FileConf}
     if [ -n "${Cookie1}" ]; then
       Count_UserSum
-      Change_JoyRunPins
     fi
   fi
 }

@@ -107,15 +107,14 @@ function Combin_All {
   #口袋书店(jd_bookshop.js)
   export BOOKSHOP_SHARECODES=$(Combin_Sub ForOtherBookShop "6b7d17c29d4e4f49a6335ee80157c455@c858f02a64094665ad7552721794ba2b@234f539da0824491befb23529dcdaa59")
   #签到领现金(jd_cash.js)
-  export JD_CASH_SHARECODES=$(Combin_Sub ForOtherCash "Jhozbeu1b-Ek8GvRw3UR0w@eU9YMrDFHKpVjAicnytU@9rqvuWU9sE-2@eBozZO-zYP4j8WY")
+  export JD_CASH_SHARECODES=$(Combin_Sub ForOtherCash "Jhozbeu1b-Ek8GvRw3UR0w@eU9YMrDFHKpVjAicnytU@9rqvuWU9sE-2@eBozZO-zYP4j8WY@ZnQxbr-wY_Qhoz_SnXpF")
   #闪购盲盒(jd_sgmh.js)
   export JDSGMH_SHARECODES=$(Combin_Sub ForOtherSgmh "T022u_x3QRke_EnVIR_wnPEIcQCjVQmoaT5kRrbA@T0205KkcHkJujwKkXXy9wK9NCjVQmoaT5kRrbA@T012a1zrlZeWI-dHCjVQmoaT5kRrbA")
   #惊喜财富岛(jd_cfd.js)
   export JDCFD_SHARECODES=$(Combin_Sub ForOtherJdcfd "401DA52935EB84F3BDAC92C458E6B530888E1FAA1E33AF78C5315A97994F6CE6")
-  #环球挑战赛(jd_global.js)
-  export JDGLOBAL_SHARECODES=$(Combin_Sub ForOtherGlobal "OTZwWkM3VnZUZlMxNko4Y1NxWjMwQXBReG1kbVFsV0JFKzNDZEIveXMvVT0=@U3Q4ZUgzalZMQjI5UitibjNNc0hidz09@TkFDcUEzQzZuMnpHYlArOElxVWFSUT09")
-  #城城领现金(jd_city.js)
-  export CITY_SHARECODES=$(Combin_Sub ForOtherCity)
+  #京东手机狂欢城(jd_carnivalcity.js)
+  export JD818_SHARECODES=$(Combin_Sub ForOtherCarni "3af8866c-6121-4655-a0bb-98367aeda4b1@2914edc0-3da7-452e-8e55-1e364ad2dcd4@7b5d35a7-16a6-47bd-a3ca-7371302ba775")
+  
 }
 
 ## 转换JD_BEAN_SIGN_STOP_NOTIFY或JD_BEAN_SIGN_NOTIFY_SIMPLE
